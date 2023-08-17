@@ -1,4 +1,5 @@
 import React from "react";
+import Card from "../components/Card";
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
 
@@ -8,7 +9,11 @@ function Home() {
       <div>
         <NavBar />
       </div>
-      <div>Body</div>
+
+      <div>
+        <Card />
+      </div>
+
       <div>
         <Footer />
       </div>
