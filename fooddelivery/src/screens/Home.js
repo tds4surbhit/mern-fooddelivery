@@ -15,7 +15,7 @@ function Home() {
         <Carousal />
       </div>
 
-      <div>
+      <div className="m-3">
         <Card />
       </div>
 
