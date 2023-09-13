@@ -5,15 +5,23 @@ const MongoURI =
 
 async function connectToDatabase() {
   try {
+    console.log("Connecting to MongoDB...");
     await mongoose.connect(MongoURI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
     console.log("Connected to MongoDB");
-    const fetchedData = await mongoose.connection.db.collection("FoodItems");
+
+    const fetchedData = await mongoose.connection.db.collection("FoodCategory");
+    console.log("Fetching data from 'FoodItems' collection...");
+
     fetchedData.find({}).toArray(function (err, data) {
-      if (err) console.log(err);
-      else console.log(data);
+      if (err) {
+        console.error("Error retrieving data:", err);
+      } else {
+        console.log("Data retrieved successfully:");
+        console.log(data);
+      }
     });
   } catch (error) {
     console.error("Error connecting to MongoDB:", error);
