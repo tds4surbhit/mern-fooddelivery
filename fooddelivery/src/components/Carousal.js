@@ -28,7 +28,7 @@ function Carousel() {
           </div>
           <div className="carousel-item active">
             <img
-              src="https://source.unsplash.com/random/300×700/?burger"
+              src="https://source.unsplash.com/random/300×700/?dog"
               className="d-block w-100"
               alt="..."
               style={{ filter: "brightness(30%)" }}
@@ -36,7 +36,7 @@ function Carousel() {
           </div>
           <div className="carousel-item">
             <img
-              src="https://source.unsplash.com/random/300×700/?pastry"
+              src="https://source.unsplash.com/random/300×700/?cat"
               className="d-block w-100"
               alt="..."
               style={{ filter: "brightness(30%)" }}
@@ -44,7 +44,7 @@ function Carousel() {
           </div>
           <div className="carousel-item">
             <img
-              src="https://source.unsplash.com/random/300×700/?barbeque"
+              src="https://source.unsplash.com/random/300×700/?sex"
               className="d-block w-100"
               alt="..."
               style={{ filter: "brightness(30%)" }}
