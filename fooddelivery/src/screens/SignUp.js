@@ -16,6 +16,7 @@ function SignUp() {
       password: creds.password,
       location: creds.geolocation,
     };
+
     let response = await fetch("https://localhost:9000/api//createUser", {
       method: "POST",
       headers: {
