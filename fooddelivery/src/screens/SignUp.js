@@ -9,23 +9,37 @@ function SignUp() {
     geolocation: "",
   });
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    let response = fetch("https://localhost:9000/api//createUser", {
+  const handleSubmit = async (event) => {
+    let payload = {
+      name: creds.name,
+      email: creds.email,
+      password: creds.password,
+      location: creds.geolocation,
+    };
+    let response = await fetch("https://localhost:9000/api//createUser", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(payload),
     });
+    const response_in_json = await response.json();
+    console.log(response_in_json);
+    if (!response_in_json.success) {
+      alert("Enter valid creds");
+    }
+  };
+
+  const onChange = (e) => {
+    setCreds({ ...creds, [e.target.name]: e.target.value });
   };
 
   return (
     <>
       <div className="container">
-        <form onSubmit={handleSubmit()}>
+        <form onSubmit={handleSubmit}>
           <div class="mb-3">
-            <label for="name" class="form-label">
+            <label htmlFor="name" class="form-label">
               Name
             </label>
             <input
@@ -33,6 +47,7 @@ function SignUp() {
               class="form-control"
               name="name"
               value={creds.name}
+              onChange={onChange}
             />
           </div>
           <div class="mb-3">
@@ -42,6 +57,7 @@ function SignUp() {
               class="form-control"
               name="email"
               value={creds.email}
+              onChange={onChange}
             />
           </div>
           <div class="mb-3">
@@ -51,15 +67,17 @@ function SignUp() {
               class="form-control"
               name="password"
               value={creds.password}
+              onChange={onChange}
             />
           </div>
           <div class="mb-3">
             <label class="form-label">Geo Location</label>
             <input
-              type="geolocation"
+              type="text"
               class="form-control"
               name="geolocation"
               value={creds.geolocation}
+              onChange={onChange}
             />
           </div>
           <button type="submit" class="btn btn-primary">
