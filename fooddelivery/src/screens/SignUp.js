@@ -10,6 +10,7 @@ function SignUp() {
   });
 
   const handleSubmit = async (event) => {
+    event.preventDefault();
     let payload = {
       name: creds.name,
       email: creds.email,
@@ -17,18 +18,30 @@ function SignUp() {
       location: creds.geolocation,
     };
 
-    let response = await fetch("https://localhost:9000/api//createUser", {
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify(payload);
+    var requestOptions = {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    });
-    const response_in_json = await response.json();
-    console.log(response_in_json);
-    if (!response_in_json.success) {
-      alert("Enter valid creds");
-    }
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+
+    let responseText;
+    fetch("http://localhost:9000/api/createUser", requestOptions)
+      .then((response) => {
+        if (!response.ok) {
+          alert("Network response was not ok");
+        }
+        return response.text();
+      })
+      .then((result) => {
+        responseText = result;
+        console.log("Response", responseText);
+      })
+      .catch((error) => console.log("Error", error));
   };
 
   const onChange = (e) => {
