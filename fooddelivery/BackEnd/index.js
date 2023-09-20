@@ -2,7 +2,6 @@ const express = require("express");
 const app = express();
 const port = 9000;
 const MongoDB = require("./db");
-const cors = require("cors");
 
 MongoDB.connectToDatabase();
 
@@ -12,17 +11,13 @@ app.get("/", (req, res) => {
 });
 
 // Removing the cors errors
+// Setting up CORS middleware
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
-  res.header(
-    "Access-Control-Allow-Origin",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
   next();
 });
-
-// Enable CORS for all routes
-app.use(cors());
 
 // Middleware
 app.use(express.json());
