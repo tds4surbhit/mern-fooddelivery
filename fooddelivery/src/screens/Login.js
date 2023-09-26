@@ -40,7 +40,9 @@ function Login() {
         responseText = result;
         console.log("Response", responseText);
         if (responseText) {
-          console.log("I am here");
+          let token = JSON.parse(responseText);
+          localStorage.setItem("AuthToken", token.authToken);
+          console.log(localStorage.getItem("AuthToken"));
           navigate("/");
         }
       })
