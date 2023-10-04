@@ -22,6 +22,8 @@ app.use((req, res, next) => {
 // Middleware
 app.use(express.json());
 app.use("/api/", require("./routes/createUser"));
+app.use("/api", require("./routes/displayData"));
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });

@@ -19,8 +19,9 @@ async function connectToDatabase() {
       if (err) {
         console.error("Error retrieving data:", err);
       } else {
-        console.log("Data retrieved successfully:");
-        console.log(data);
+        console.log("Data", data);
+        global.food_items = data;
+        console.log("Food Items Global Variables", global.food_items);
       }
     });
   } catch (error) {
